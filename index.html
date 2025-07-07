@@ -131,6 +131,28 @@
       display: none;
     }
 
+    .play-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #1a1a1a;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+      padding: 10px 16px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: background-color 0.3s ease, transform 0.2s;
+      z-index: 1000;
+    }
+
+    .play-button:hover {
+      background-color: var(--primary-color);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
     @media (max-width: 768px) {
       .nav-links {
         display: flex;
@@ -173,7 +195,9 @@
     </section>
   </div>
 
-  <audio id="audioPlayer" autoplay loop></audio>
+  <audio id="audioPlayer" loop></audio>
+
+  <button class="play-button" onclick="startAudio()">▶ Play Music</button>
 
   <footer>
     &copy; SH_Dev. All rights reserved.
@@ -184,9 +208,14 @@
     audioPlayer.src = "rockthatbody.mp3";
     audioPlayer.volume = 0.5;
 
-    audioPlayer.play().catch(err => {
-      console.warn("Autoplay failed (may require user interaction):", err);
-    });
+    function startAudio() {
+      audioPlayer.play().then(() => {
+        document.querySelector('.play-button').style.display = 'none';
+      }).catch(err => {
+        alert("Playback failed. Try clicking again.");
+        console.error("Audio play error:", err);
+      });
+    }
 
     function showTab(tabId) {
       const sections = document.querySelectorAll('section');
