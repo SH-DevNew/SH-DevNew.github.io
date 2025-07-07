@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SH_Dev | Developer Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --primary-color: #4f46e5;
@@ -153,6 +153,41 @@
       transform: scale(1.05);
     }
 
+    /* Volume Slider Styles */
+    #volumeControl {
+      position: fixed;
+      bottom: 70px;
+      left: 20px;
+      width: 120px;
+      cursor: pointer;
+      appearance: none;
+      background: #333;
+      height: 4px;
+      border-radius: 5px;
+      outline: none;
+      z-index: 1000;
+    }
+
+    #volumeControl::-webkit-slider-thumb {
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      margin-top: -4px; /* Center the thumb */
+    }
+
+    #volumeControl::-moz-range-thumb {
+      width: 12px;
+      height: 12px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+    }
+
     @media (max-width: 768px) {
       .nav-links {
         display: flex;
@@ -190,7 +225,7 @@
 
     <section id="read-more" class="hidden">
       <h2>Read More</h2>
-      <p>I create projects for fun, but also to learn more about development environments and systems.<br><br>
+      <p>I create projects for fun, but also to learn more about development environments and systems.<br /><br />
         When I'm not coding, I enjoy exploring music, tweaking UIs, and collaborating with others in the dev scene.</p>
     </section>
   </div>
@@ -198,6 +233,7 @@
   <audio id="audioPlayer" loop></audio>
 
   <button class="play-button" onclick="startAudio()">▶ Play Music</button>
+  <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5" title="Volume Control" />
 
   <footer>
     &copy; SH_Dev. All rights reserved.
@@ -216,6 +252,11 @@
         console.error("Audio play error:", err);
       });
     }
+
+    const volumeSlider = document.getElementById('volumeControl');
+    volumeSlider.addEventListener('input', () => {
+      audioPlayer.volume = volumeSlider.value;
+    });
 
     function showTab(tabId) {
       const sections = document.querySelectorAll('section');
