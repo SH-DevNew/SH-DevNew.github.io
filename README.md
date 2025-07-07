@@ -184,7 +184,6 @@
     audioPlayer.src = "rockthatbody.mp3";
     audioPlayer.volume = 0.5;
 
-    // Handle autoplay policy issues
     audioPlayer.play().catch(err => {
       console.warn("Autoplay failed (may require user interaction):", err);
     });
