@@ -183,7 +183,7 @@
       <div class="tab-section">
         <div class="tab-card">
           <h3>Project Purple</h3>
-          <p>A cool scripting project that I’m building using Lua and Python. It’s designed to help automate game features and enhance developer workflows.</p>
+          <p>A cool scripting project that I’m building using Lua.</p>
         </div>
       </div>
     </section>
